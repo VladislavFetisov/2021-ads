@@ -93,7 +93,8 @@ public class HashTableImpl<Key, Value> implements HashTable<Key, Value> {
 //        if (key instanceof String) {
 //            return (int) (stringHash((String) key) % length);
 //        }
-        return Math.abs(key.hashCode() % length);
+        int h;
+        return (h = key.hashCode() % length) ^ (h >>> 16);
     }
 
     @SuppressWarnings("unchecked")
